@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chart js</title>
+
+    <style>
+      img{
+        display: block;
+        max-width: 100%;
+      }
+      body{
+        margin: 0;
+      }
+      .container{
+        display: block;
+        margin: 0 auto;
+        min-height: 100vh;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 15px;
+
+        box-sizing: border-box;
+      }
+      .col-1,
+      .col-2{
+        float: left;
+        width: 50%;
+      }
+      .col-3{
+        display: block;
+        width: 50%;
+        margin: 0 auto;
+      }
+    </style>
+</head>
+<body>
+
+  <div class="container">
+      <div class="col-1">
+          <canvas class="myChart-01" height="300"></canvas>
+      </div>
+
+      <div class="col-2">
+          <canvas class="myChart-02" height="300"></canvas>
+      </div>
+
+      <div class="col-3">
+          <canvas class="myChart-03" height="500"></canvas>
+      </div>
+  </div>
+
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./node_modules/chart.js/dist/Chart.js"></script>
+  <script>
+    var chartOne = $('.myChart-01');
+    var charTwo = $('.myChart-02');
+
+    var firstLine = [20, 10, 100, 55, 35, 450, 500];
+    var secondLine = [50, 30, 10, 50, 30, 400, 380];
+
+    var myLineChart = new Chart(chartOne, {
+      type: 'line',
+      data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [{
+          data: firstLine,
+          borderColor: 'rgba(0,255,0,0.5)',
+          fill: true,
+          backgroundColor: 'rgba(0,255,0,0.5)',
+        },
+        {
+          data: secondLine,
+          borderColor: 'rgba(255,0,0,0.5)',
+          fill: true,
+          backgroundColor: 'rgba(255,0,0,0.5)',
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            display: true,
+            gridLines: {
+              display: false,
+              color: '#c3c3c3'
+            },
+            ticks: {
+              beginAtZero: true,
+              maxTicksLimit: 10
+            }
+          }],
+          yAxes: [{
+            display: true,
+            gridLines: {
+              display: true,
+              color: '#c3c3c3'
+            },
+            ticks: {
+              beginAtZero: true,
+              maxTicksLimit: 7
+            }
+          }]
+        }
+      }
+    });
+
+    var myPieChart = new Chart(charTwo, {
+      type: 'pie',
+      data: {
+        labels: ["Cliente 1", "Cliente 2", "Cliente 3"],
+        datasets: [{
+          data: [10,20,30],
+          backgroundColor: ['red', 'green', 'blue']
+        }]
+      },
+      options: {
+        tooltips: {
+          enabled: false
+        },
+        segmentShowStroke: false,
+        elements: {
+          arc: {
+            borderWidth: 0
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
